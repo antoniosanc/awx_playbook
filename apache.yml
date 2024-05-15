@@ -1,6 +1,6 @@
 #Playbook para instalar apache
 ---
- - hosts: apache
+ - hosts: myhosts
    sudo: yes
    tasks:
       - name: install apache2
