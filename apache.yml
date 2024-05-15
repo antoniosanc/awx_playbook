@@ -1,7 +1,6 @@
 #Playbook para instalar apache
 ---
  - hosts: 127.0.0.1
-   sudo: yes
    tasks:
       - name: install apache2
         apt: name=apache2 update_cache=yes state=latest
