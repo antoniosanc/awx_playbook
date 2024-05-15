@@ -1,6 +1,8 @@
 #Ejemplo de playbook en ansible AWX
 # Primer ejemplo de Playbook en Ansible
+...
 - hosts: localhost
   tasks:
   - name: Hacer ping
     ping:
+...
