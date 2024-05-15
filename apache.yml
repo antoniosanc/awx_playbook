@@ -1,20 +1,16 @@
 #Playbook para instalar apache
 ---
-- name: Setup httpd server
-  hosts: all
-  tasks:
-   - name: Install httpd
-     ansible.builtin.package:
-      name: httpd
-      state: present
+ - hosts: apache
+   sudo: yes
+   tasks:
+      - name: install apache2
+        apt: name=apache2 update_cache=yes state=latest
 
-   - name: Copy file from base system to target node
-     ansible.builtin.copy:
-      src: /root/test.html
-      dest: /var/www/html/lw.html
+      - name: enabled mod_rewrite
+        apache2_module: name=rewrite state=present
+        notify:
+          - restart apache2
 
-   - name: Start service httpd, if not started
-     ansible.builtin.service:
-      name: httpd
-      state: started
-      enabled: true
+    handlers:
+      - name: restart apache2
+        service: name=apache2 state=restarted
